@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "IOqHFzl0pC50VLR+HdUxKmWtfEr/lCb8bDViQM8wiHU=",
+  "Source": "auth-tester",
+  "BasePath": "_content/auth-tester",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
