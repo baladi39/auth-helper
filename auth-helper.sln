@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "auth-tester", "auth-tester.csproj", "{DF606F95-CFA0-D65F-828B-7E6C19276491}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthHelper", "AuthHelper.csproj", "{89AADE2A-22DC-0B63-32F7-2FFE2543CF92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF606F95-CFA0-D65F-828B-7E6C19276491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF606F95-CFA0-D65F-828B-7E6C19276491}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF606F95-CFA0-D65F-828B-7E6C19276491}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF606F95-CFA0-D65F-828B-7E6C19276491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89AADE2A-22DC-0B63-32F7-2FFE2543CF92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89AADE2A-22DC-0B63-32F7-2FFE2543CF92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89AADE2A-22DC-0B63-32F7-2FFE2543CF92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89AADE2A-22DC-0B63-32F7-2FFE2543CF92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3EF68D10-2E6B-497E-92E0-582C47CFEF6D}
+		SolutionGuid = {66C9540A-6B02-4B8C-A4AF-6254F8EFE361}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "IOqHFzl0pC50VLR+HdUxKmWtfEr/lCb8bDViQM8wiHU=",
-  "Source": "auth-tester",
-  "BasePath": "_content/auth-tester",
+  "Hash": "yCaJgMeoJPLTjr+llf/AmLxcWIWCXWmxuXSjJSlaY7E=",
+  "Source": "AuthHelper",
+  "BasePath": "_content/AuthHelper",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

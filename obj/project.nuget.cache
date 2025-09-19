@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B7xNJK/oRrg=",
+  "dgSpecHash": "+jj7QDUEuaY=",
   "success": true,
-  "projectFilePath": "/Users/gastonbaladi/Projects/auth-tester/auth-tester.csproj",
+  "projectFilePath": "/Users/gastonbaladi/Projects/auth-helper/AuthHelper.csproj",
   "expectedPackageFiles": [
     "/Users/gastonbaladi/.nuget/packages/auth0.aspnetcore.authentication/1.5.0/auth0.aspnetcore.authentication.1.5.0.nupkg.sha512",
     "/Users/gastonbaladi/.nuget/packages/dotnetenv/3.1.1/dotnetenv.3.1.1.nupkg.sha512",

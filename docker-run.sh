@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Docker build and run script for auth-tester
+# Docker build and run script for AuthHelper
 
 set -e
 
 # Configuration
-IMAGE_NAME="auth-tester"
+IMAGE_NAME="authhelper"
 TAG="latest"
-CONTAINER_NAME="auth-tester-app"
+CONTAINER_NAME="authhelper-app"
 PORT="8080"
 
 # Colors for output

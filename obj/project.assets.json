@@ -5854,11 +5854,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/gastonbaladi/Projects/auth-tester/auth-tester.csproj",
-      "projectName": "auth-tester",
-      "projectPath": "/Users/gastonbaladi/Projects/auth-tester/auth-tester.csproj",
+      "projectUniqueName": "/Users/gastonbaladi/Projects/auth-helper/AuthHelper.csproj",
+      "projectName": "AuthHelper",
+      "projectPath": "/Users/gastonbaladi/Projects/auth-helper/AuthHelper.csproj",
       "packagesPath": "/Users/gastonbaladi/.nuget/packages/",
-      "outputPath": "/Users/gastonbaladi/Projects/auth-tester/obj/",
+      "outputPath": "/Users/gastonbaladi/Projects/auth-helper/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/gastonbaladi/.nuget/NuGet/NuGet.Config"

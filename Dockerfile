@@ -3,16 +3,16 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
-COPY auth-tester.csproj .
-RUN dotnet restore "auth-tester.csproj"
+COPY AuthHelper.csproj .
+RUN dotnet restore "AuthHelper.csproj"
 
 # Copy source code and build the application
 COPY . .
-RUN dotnet build "auth-tester.csproj" -c Release -o /app/build
+RUN dotnet build "AuthHelper.csproj" -c Release -o /app/build
 
 # Publish stage
 FROM build AS publish
-RUN dotnet publish "auth-tester.csproj" -c Release -o /app/publish --no-restore
+RUN dotnet publish "AuthHelper.csproj" -c Release -o /app/publish --no-restore
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS runtime
