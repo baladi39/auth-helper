@@ -23,6 +23,7 @@ public class WeatherForecastController : ControllerBase
         try
         {
             var forecasts = await _weatherForecastService.GetWeatherForecastsAsync(count);
+            Console.WriteLine("Successfully retrieved weather forecasts.");
             return Ok(forecasts);
         }
         catch (Exception ex)
