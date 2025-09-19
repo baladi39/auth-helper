@@ -62,4 +62,22 @@ namespace AuthHelper.Models
         public string name { get; set; } = string.Empty;
         public string picture { get; set; } = string.Empty;
     }
+
+    public class UserDataPayload
+    {
+        public string User_Id { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Nickname { get; set; } = string.Empty;
+        public string Picture { get; set; } = string.Empty;
+        public bool Email_Verified { get; set; }
+        public int Login_Count { get; set; }
+        public string Last_Login { get; set; } = string.Empty;
+        public object? User_Metadata { get; set; }
+        public object? App_Metadata { get; set; }
+        public string Connection { get; set; } = string.Empty;
+        public string Connection_Strategy { get; set; } = string.Empty;
+        public string Client_Id { get; set; } = string.Empty;
+        public string Client_Name { get; set; } = string.Empty;
+    }
 }

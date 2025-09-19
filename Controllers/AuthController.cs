@@ -135,5 +135,46 @@ namespace AuthHelper.Controllers
         {
             return Ok(new { status = "healthy", service = "auth", timestamp = DateTime.UtcNow });
         }
+
+        /// <summary>
+        /// Receive user data payload from Node.js and log it
+        /// </summary>
+        /// <param name="userDataPayload">User data from Node.js</param>
+        /// <returns>Confirmation of received data</returns>
+        [HttpPost("receive-user-data")]
+        public ActionResult ReceiveUserData([FromBody] UserDataPayload userDataPayload)
+        {
+            try
+            {
+                // Log the received payload to the logger
+                _logger.LogInformation("Received user data payload: {@UserDataPayload}", userDataPayload);
+
+                // Write to console as well
+                Console.WriteLine("=== User Data Received ===");
+                Console.WriteLine($"User ID: {userDataPayload.User_Id}");
+                Console.WriteLine($"Email: {userDataPayload.Email}");
+                Console.WriteLine($"Name: {userDataPayload.Name}");
+                Console.WriteLine($"Nickname: {userDataPayload.Nickname}");
+                Console.WriteLine($"Picture: {userDataPayload.Picture}");
+                Console.WriteLine($"Email Verified: {userDataPayload.Email_Verified}");
+                Console.WriteLine($"Login Count: {userDataPayload.Login_Count}");
+                Console.WriteLine($"Last Login: {userDataPayload.Last_Login}");
+                Console.WriteLine($"User Metadata: {System.Text.Json.JsonSerializer.Serialize(userDataPayload.User_Metadata)}");
+                Console.WriteLine($"App Metadata: {System.Text.Json.JsonSerializer.Serialize(userDataPayload.App_Metadata)}");
+                Console.WriteLine($"Connection: {userDataPayload.Connection}");
+                Console.WriteLine($"Connection Strategy: {userDataPayload.Connection_Strategy}");
+                Console.WriteLine($"Client ID: {userDataPayload.Client_Id}");
+                Console.WriteLine($"Client Name: {userDataPayload.Client_Name}");
+                Console.WriteLine("========================");
+
+                return Ok(new { message = "User data received and logged successfully", timestamp = DateTime.UtcNow });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error processing user data payload");
+                Console.WriteLine($"Error processing user data: {ex.Message}");
+                return StatusCode(500, new { message = "Error processing user data" });
+            }
+        }
     }
 }

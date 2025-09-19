@@ -4,3 +4,36 @@ GET {{auth_helper_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+# Test the receive-user-data endpoint
+POST {{auth_helper_HostAddress}}/api/auth/receive-user-data
+Content-Type: application/json
+
+{
+  "user_id": "auth0|64a1b2c3d4e5f6789abcdef0",
+  "email": "john.doe@example.com",
+  "name": "John Doe",
+  "nickname": "johndoe",
+  "picture": "https://s.gravatar.com/avatar/abc123/s/480?r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fjo.png",
+  "email_verified": true,
+  "login_count": 15,
+  "last_login": "2025-09-19T14:30:45.123Z",
+  "user_metadata": {
+    "preferences": {
+      "theme": "dark",
+      "language": "en"
+    },
+    "first_login": "2024-01-15T10:20:30.000Z"
+  },
+  "app_metadata": {
+    "roles": ["user", "premium"],
+    "plan": "pro",
+    "features": ["feature_a", "feature_b"]
+  },
+  "connection": "Username-Password-Authentication",
+  "connection_strategy": "auth0",
+  "client_id": "abc123def456ghi789jkl012",
+  "client_name": "My Application"
+}
+
+###
