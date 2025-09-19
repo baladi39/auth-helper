@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace auth_tester.Models
+namespace AuthHelper.Models
 {
     public class LoginRequest
     {

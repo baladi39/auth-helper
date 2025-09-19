@@ -1,6 +1,6 @@
-using auth_tester.Repositories;
-using auth_tester.Services;
-using auth_tester.Models;
+using AuthHelper.Repositories;
+using AuthHelper.Services;
+using AuthHelper.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -79,7 +79,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddOpenApiDocument(config =>
 {
     config.DocumentName = "v1";
-    config.Title = "Auth Tester API";
+    config.Title = "Auth Helper API";
     config.Version = "v1";
     config.Description = "A simple ASP.NET Core Web API for authentication testing";
 

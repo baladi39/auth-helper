@@ -1,9 +1,9 @@
-using auth_tester.Models;
-using auth_tester.Services;
+using AuthHelper.Models;
+using AuthHelper.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace auth_tester.Controllers
+namespace AuthHelper.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

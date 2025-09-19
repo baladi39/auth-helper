@@ -1,9 +1,9 @@
-using auth_tester.Models;
+using AuthHelper.Models;
 using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
 
-namespace auth_tester.Services
+namespace AuthHelper.Services
 {
     public interface IAuthService
     {

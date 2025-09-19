@@ -1,4 +1,4 @@
-# Auth Tester
+# Auth Helper
 
 A simple ASP.NET Core Web API for authentication testing with Auth0.
 

@@ -1,6 +1,6 @@
-using auth_tester.Models;
+using AuthHelper.Models;
 
-namespace auth_tester.Repositories;
+namespace AuthHelper.Repositories;
 
 
 public interface IWeatherForecastRepository
