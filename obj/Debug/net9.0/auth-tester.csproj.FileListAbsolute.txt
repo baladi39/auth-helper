@@ -1,12 +1,22 @@
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/appsettings.Development.json
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/appsettings.json
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/appsettings.Production.json
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester.staticwebassets.endpoints.json
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester.deps.json
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester.runtimeconfig.json
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/auth-tester.pdb
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Auth0.AspNetCore.Authentication.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Microsoft.OpenApi.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Namotion.Reflection.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Newtonsoft.Json.dll
@@ -20,6 +30,7 @@
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/NSwag.Core.Yaml.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/NSwag.Generation.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/NSwag.Generation.AspNetCore.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/YamlDotNet.dll
 /Users/gastonbaladi/Projects/auth-tester/obj/Debug/net9.0/auth-tester.csproj.AssemblyReference.cache
 /Users/gastonbaladi/Projects/auth-tester/obj/Debug/net9.0/auth-tester.GeneratedMSBuildEditorConfig.editorconfig
@@ -44,3 +55,5 @@
 /Users/gastonbaladi/Projects/auth-tester/obj/Debug/net9.0/auth-tester.pdb
 /Users/gastonbaladi/Projects/auth-tester/obj/Debug/net9.0/auth-tester.genruntimeconfig.cache
 /Users/gastonbaladi/Projects/auth-tester/obj/Debug/net9.0/ref/auth-tester.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/DotNetEnv.dll
+/Users/gastonbaladi/Projects/auth-tester/bin/Debug/net9.0/Sprache.dll
