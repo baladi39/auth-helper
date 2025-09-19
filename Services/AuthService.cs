@@ -10,6 +10,8 @@ namespace AuthHelper.Services
         Task<LoginResponse> LoginAsync(LoginRequest loginRequest);
         Task<SignupResponse> SignupAsync(SignupRequest signupRequest);
         Task<UserInfo> GetUserInfoAsync(string accessToken);
+        Auth0LoginUrlResponse GetAuth0LoginUrl(Auth0LoginUrlRequest? request = null);
+        Task<Auth0CallbackResponse> HandleAuth0CallbackAsync(Auth0CallbackRequest callbackRequest);
     }
 
     public class AuthService : IAuthService
@@ -215,6 +217,117 @@ namespace AuthHelper.Services
             {
                 _logger.LogError(ex, "JSON parsing error during user info retrieval");
                 throw new InvalidOperationException("Invalid response from user information service", ex);
+            }
+        }
+
+        public Auth0LoginUrlResponse GetAuth0LoginUrl(Auth0LoginUrlRequest? request = null)
+        {
+            try
+            {
+                // Generate a random state parameter for security
+                var state = request?.State ?? Guid.NewGuid().ToString("N");
+
+                // Use provided redirect URI or fall back to configured one
+                var redirectUri = request?.RedirectUri ?? _auth0Settings.RedirectUri;
+
+                if (string.IsNullOrEmpty(redirectUri))
+                {
+                    throw new InvalidOperationException("Redirect URI must be configured in Auth0Settings or provided in the request");
+                }
+
+                // Build the authorization URL
+                var authUrlBuilder = new StringBuilder($"https://{_auth0Settings.Domain}/authorize");
+                authUrlBuilder.Append($"?response_type=code");
+                authUrlBuilder.Append($"&client_id={Uri.EscapeDataString(_auth0Settings.ClientId)}");
+                authUrlBuilder.Append($"&redirect_uri={Uri.EscapeDataString(redirectUri)}");
+                authUrlBuilder.Append($"&scope=openid%20profile%20email");
+                authUrlBuilder.Append($"&state={Uri.EscapeDataString(state)}");
+
+                // Add audience if specified
+                if (!string.IsNullOrEmpty(_auth0Settings.Audience))
+                {
+                    authUrlBuilder.Append($"&audience={Uri.EscapeDataString(_auth0Settings.Audience)}");
+                }
+
+                // Add connection if specified (for social logins, etc.)
+                if (!string.IsNullOrEmpty(request?.Connection))
+                {
+                    authUrlBuilder.Append($"&connection={Uri.EscapeDataString(request.Connection)}");
+                }
+
+                var loginUrl = authUrlBuilder.ToString();
+
+                _logger.LogInformation("Generated Auth0 login URL for client_id: {ClientId}", _auth0Settings.ClientId);
+
+                return new Auth0LoginUrlResponse
+                {
+                    LoginUrl = loginUrl,
+                    State = state
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error generating Auth0 login URL");
+                throw new InvalidOperationException("Failed to generate Auth0 login URL", ex);
+            }
+        }
+
+        public async Task<Auth0CallbackResponse> HandleAuth0CallbackAsync(Auth0CallbackRequest callbackRequest)
+        {
+            try
+            {
+                // Prepare the token exchange request
+                var tokenRequest = new
+                {
+                    grant_type = "authorization_code",
+                    client_id = _auth0Settings.ClientId,
+                    client_secret = _auth0Settings.ClientSecret,
+                    code = callbackRequest.Code,
+                    redirect_uri = callbackRequest.RedirectUri ?? "http://localhost:5018"
+                };
+
+                var json = JsonSerializer.Serialize(tokenRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync($"https://{_auth0Settings.Domain}/oauth/token", content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    _logger.LogError($"Auth0 token exchange failed: {response.StatusCode}, {errorContent}");
+                    throw new InvalidOperationException("Failed to exchange authorization code for tokens");
+                }
+
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var tokenResponse = JsonSerializer.Deserialize<Auth0TokenResponse>(responseContent);
+
+                if (tokenResponse == null || string.IsNullOrEmpty(tokenResponse.access_token))
+                {
+                    throw new InvalidOperationException("Invalid token response from Auth0");
+                }
+
+                // Get user information using the access token
+                var userInfo = await GetUserInfoAsync(tokenResponse.access_token);
+
+                return new Auth0CallbackResponse
+                {
+                    AccessToken = tokenResponse.access_token,
+                    RefreshToken = tokenResponse.refresh_token ?? string.Empty,
+                    TokenType = tokenResponse.token_type ?? "Bearer",
+                    ExpiresIn = tokenResponse.expires_in,
+                    Scope = tokenResponse.scope ?? string.Empty,
+                    User = userInfo
+                };
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, "HTTP error during Auth0 callback processing");
+                throw new InvalidOperationException("Authentication service unavailable", ex);
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogError(ex, "JSON parsing error during Auth0 callback processing");
+                throw new InvalidOperationException("Invalid response from authentication service", ex);
             }
         }
     }

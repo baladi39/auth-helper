@@ -127,6 +127,114 @@ namespace AuthHelper.Controllers
         }
 
         /// <summary>
+        /// Get Auth0 login URL for web authentication
+        /// </summary>
+        /// <param name="request">Optional login URL parameters</param>
+        /// <returns>Auth0 authorization URL and state parameter</returns>
+        [HttpPost("login-url")]
+        public ActionResult<Auth0LoginUrlResponse> GetAuth0LoginUrl([FromBody] Auth0LoginUrlRequest? request = null)
+        {
+            try
+            {
+                var response = _authService.GetAuth0LoginUrl(request);
+                return Ok(response);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError(ex, "Error generating Auth0 login URL");
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error generating Auth0 login URL");
+                return StatusCode(500, new { message = "An unexpected error occurred" });
+            }
+        }
+
+        /// <summary>
+        /// Redirect to Auth0 login URL for web authentication
+        /// </summary>
+        /// <param name="redirectUri">Optional redirect URI (default: http://localhost:5018/api/Auth/callback)</param>
+        /// <param name="state">Optional state parameter (default: my-custom-state)</param>
+        /// <param name="connection">Optional connection type (default: Username-Password-Authentication)</param>
+        /// <returns>Redirect to Auth0 authorization URL</returns>
+        [HttpGet("login")]
+        public ActionResult RedirectToAuth0Login(
+            [FromQuery] string? redirectUri = null,
+            [FromQuery] string? state = null,
+            [FromQuery] string? connection = null)
+        {
+            try
+            {
+                // Get the base URL from the current request
+                var baseUrl = $"{Request.Scheme}://{Request.Host}";
+
+                // Apply default values
+                var request = new Auth0LoginUrlRequest
+                {
+                    RedirectUri = redirectUri ?? $"{baseUrl}/api/Auth/callback",
+                    State = state ?? "my-custom-state",
+                    Connection = connection ?? "Username-Password-Authentication"
+                };
+
+                var response = _authService.GetAuth0LoginUrl(request);
+                return Redirect(response.LoginUrl);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError(ex, "Error generating Auth0 login URL for redirect");
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error generating Auth0 login URL for redirect");
+                return StatusCode(500, new { message = "An unexpected error occurred" });
+            }
+        }
+
+        /// <summary>
+        /// Handle Auth0 callback and exchange authorization code for tokens
+        /// </summary>
+        /// <param name="code">Authorization code from Auth0 callback</param>
+        /// <param name="state">State parameter from Auth0 callback</param>
+        /// <param name="redirectUri">Optional redirect URI used in the authorization request</param>
+        /// <returns>Access token, refresh token, and user information</returns>
+        [HttpGet("callback")]
+        public async Task<ActionResult<Auth0CallbackResponse>> HandleAuth0Callback(
+            [FromQuery] string code,
+            [FromQuery] string? state = null,
+            [FromQuery] string? redirectUri = null)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(code))
+                {
+                    return BadRequest(new { message = "Authorization code is required" });
+                }
+
+                var callbackRequest = new Auth0CallbackRequest
+                {
+                    Code = code,
+                    State = state ?? string.Empty,
+                    RedirectUri = redirectUri
+                };
+
+                var response = await _authService.HandleAuth0CallbackAsync(callbackRequest);
+                return Ok(response);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError(ex, "Error processing Auth0 callback");
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error processing Auth0 callback");
+                return StatusCode(500, new { message = "An unexpected error occurred" });
+            }
+        }
+
+        /// <summary>
         /// Health check endpoint for the auth service
         /// </summary>
         /// <returns>Service status</returns>

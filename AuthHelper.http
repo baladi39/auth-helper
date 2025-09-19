@@ -37,3 +37,28 @@ Content-Type: application/json
 }
 
 ###
+
+# Test the Auth0 login URL endpoint
+POST {{auth_helper_HostAddress}}/api/auth/login-url
+Content-Type: application/json
+
+{
+  "redirectUri": "http://localhost:3000/callback",
+  "state": "my-custom-state",
+  "connection": "Username-Password-Authentication"
+}
+
+###
+
+# Test the Auth0 login URL endpoint with minimal payload
+POST {{auth_helper_HostAddress}}/api/auth/login-url
+Content-Type: application/json
+
+{}
+
+###
+
+# Test the Auth0 callback endpoint
+GET {{auth_helper_HostAddress}}/api/auth/callback?code=piXVwSRK2WuqXm10qZiMwCE4JiBoLBcx_lCBPVNQt5jct&state=my-custom-state
+
+###
