@@ -6,8 +6,25 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using DotNetEnv;
 
-// Load environment variables from .env file
-Env.Load();
+// Load environment variables from company-specific .env file
+// Usage: dotnet run -- --company flipflop
+//        dotnet run -- --company saascertain
+var company = args.FirstOrDefault(a => a.StartsWith("--company="))?.Split('=')[1]
+              ?? (args.Contains("--company") ? args.SkipWhile(a => a != "--company").Skip(1).FirstOrDefault() : null)
+              ?? Environment.GetEnvironmentVariable("COMPANY")
+              ?? "flipflop"; // default company
+
+var envFile = $".env.{company.ToLower()}";
+if (File.Exists(envFile))
+{
+    Env.Load(envFile);
+    Console.WriteLine($"✅ Loaded configuration for company: {company.ToUpper()}");
+}
+else
+{
+    Console.WriteLine($"⚠️  Environment file '{envFile}' not found. Trying default .env file...");
+    Env.Load();
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
