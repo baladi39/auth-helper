@@ -1,4 +1,3 @@
-using AuthHelper.Repositories;
 using AuthHelper.Services;
 using AuthHelper.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -111,8 +110,6 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 // Register repository and service layers
-builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
-builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();

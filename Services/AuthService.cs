@@ -181,10 +181,12 @@ namespace AuthHelper.Services
         {
             try
             {
-                _httpClient.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                // Use a request-specific message instead of modifying shared DefaultRequestHeaders
+                // This prevents memory leaks and thread-safety issues with the shared HttpClient
+                using var request = new HttpRequestMessage(HttpMethod.Get, $"https://{_auth0Settings.Domain}/userinfo");
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
 
-                var response = await _httpClient.GetAsync($"https://{_auth0Settings.Domain}/userinfo");
+                var response = await _httpClient.SendAsync(request);
 
                 if (!response.IsSuccessStatusCode)
                 {
