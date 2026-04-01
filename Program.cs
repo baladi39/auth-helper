@@ -123,6 +123,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Serve the landing page at /
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 // Add authentication and authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();

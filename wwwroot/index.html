@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Helper</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            padding: 48px 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        a.btn {
+            display: block;
+            padding: 14px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: opacity 0.15s;
+        }
+        a.btn:hover { opacity: 0.85; }
+        .btn-primary {
+            background: #635bff;
+            color: #fff;
+        }
+        .btn-secondary {
+            background: #fff;
+            color: #635bff;
+            border: 2px solid #635bff;
+        }
+        .divider {
+            margin: 24px 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+        .info {
+            font-size: 12px;
+            color: #999;
+        }
+        .info a { color: #635bff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Auth Helper</h1>
+        <p>Sign in or create an account via Auth0</p>
+        <div class="buttons">
+            <a class="btn btn-primary" href="/api/Auth/login">Log In</a>
+            <a class="btn btn-secondary" href="/api/Auth/login?screen_hint=signup">Sign Up</a>
+        </div>
+        <hr class="divider">
+        <p class="info">
+            API docs available at <a href="/swagger">/swagger</a>
+        </p>
+    </div>
+</body>
+</html>

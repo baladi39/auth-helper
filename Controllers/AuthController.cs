@@ -162,7 +162,8 @@ namespace AuthHelper.Controllers
         public ActionResult RedirectToAuth0Login(
             [FromQuery] string? redirectUri = null,
             [FromQuery] string? state = null,
-            [FromQuery] string? connection = null)
+            [FromQuery] string? connection = null,
+            [FromQuery] string? screen_hint = null)
         {
             try
             {
@@ -178,7 +179,15 @@ namespace AuthHelper.Controllers
                 };
 
                 var response = _authService.GetAuth0LoginUrl(request);
-                return Redirect(response.LoginUrl);
+                var loginUrl = response.LoginUrl;
+
+                // Append screen_hint if provided (e.g. "signup" to show signup form)
+                if (!string.IsNullOrEmpty(screen_hint))
+                {
+                    loginUrl += $"&screen_hint={Uri.EscapeDataString(screen_hint)}";
+                }
+
+                return Redirect(loginUrl);
             }
             catch (InvalidOperationException ex)
             {
