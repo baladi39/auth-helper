@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+jj7QDUEuaY=",
+  "dgSpecHash": "bNKjo07ecfg=",
   "success": true,
   "projectFilePath": "/Users/gastonbaladi/Projects/auth-helper/AuthHelper.csproj",
   "expectedPackageFiles": [
@@ -111,7 +111,10 @@
     "/Users/gastonbaladi/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/gastonbaladi/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/gastonbaladi/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
-    "/Users/gastonbaladi/.nuget/packages/yamldotnet/16.3.0/yamldotnet.16.3.0.nupkg.sha512"
+    "/Users/gastonbaladi/.nuget/packages/yamldotnet/16.3.0/yamldotnet.16.3.0.nupkg.sha512",
+    "/Users/gastonbaladi/.nuget/packages/microsoft.netcore.app.ref/9.0.14/microsoft.netcore.app.ref.9.0.14.nupkg.sha512",
+    "/Users/gastonbaladi/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.14/microsoft.aspnetcore.app.ref.9.0.14.nupkg.sha512",
+    "/Users/gastonbaladi/.nuget/packages/microsoft.netcore.app.host.osx-arm64/9.0.14/microsoft.netcore.app.host.osx-arm64.9.0.14.nupkg.sha512"
   ],
   "logs": []
 }
